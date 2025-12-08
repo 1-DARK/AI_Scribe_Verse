@@ -1,0 +1,55 @@
+services:
+  # Frontend - Static Site
+  - type: web
+    name: ai-scribe-verse-frontend
+    env: static
+    buildCommand: npm install && npm run build
+    staticPublishPath: ./dist
+    headers:
+      - path: /*
+        name: X-Content-Type-Options
+        value: nosniff
+      - path: /*
+        name: X-Frame-Options
+        value: DENY
+      - path: /*
+        name: X-XSS-Protection
+        value: 1; mode=block
+    envVars:
+      - key: VITE_SUPABASE_URL
+        sync: false
+      - key: VITE_SUPABASE_PUBLISHABLE_KEY
+        sync: false
+      - key: VITE_NUMERICAL_API_URL
+        sync: false
+      - key: VITE_CATEGORICAL_API_URL
+        sync: false
+
+  # Numerical Analysis Backend
+  - type: web
+    name: ai-scribe-verse-numerical-api
+    runtime: python
+    plan: starter
+    buildCommand: pip install -r requirements_numerical.txt
+    startCommand: uvicorn AutoInsight_numerical:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0
+      - key: ALLOWED_ORIGINS
+        sync: false
+        # Set this to your frontend URL after deployment, e.g., https://ai-scribe-verse-frontend.onrender.com
+
+  # Categorical Analysis Backend
+  - type: web
+    name: ai-scribe-verse-categorical-api
+    runtime: python
+    plan: starter
+    buildCommand: pip install -r requirements_categorical.txt
+    startCommand: uvicorn AutoInsight_categorical:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0
+      - key: ALLOWED_ORIGINS
+        sync: false
+        # Set this to your frontend URL after deployment, e.g., https://ai-scribe-verse-frontend.onrender.com
+

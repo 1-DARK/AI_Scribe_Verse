@@ -23,6 +23,7 @@ import seaborn as sns   # type: ignore
 import matplotlib.pyplot as plt # type: ignore
 import json # type: ignore
 import base64
+import os
 from io import BytesIO
 from fastapi import FastAPI, UploadFile, File, HTTPException # type: ignore
 from fastapi.responses import HTMLResponse # type: ignore
@@ -32,9 +33,13 @@ import torch # type: ignore
 
 app = FastAPI()
 
+# Configure CORS - allow environment variable or default to all origins
+allowed_origins_env = os.environ.get("ALLOWED_ORIGINS", "*")
+allowed_origins = allowed_origins_env.split(",") if allowed_origins_env != "*" else ["*"]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=allowed_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -206,7 +211,9 @@ async def root():
 
 if __name__ == "__main__":
     import uvicorn   # pyright: ignore[reportMissingImports]
-    uvicorn.run(app, host="0.0.0.0", port=8002)
+    import os
+    port = int(os.environ.get("PORT", 8002))
+    uvicorn.run(app, host="0.0.0.0", port=port)
 
 
 ##  python3 -m uvicorn AutoInsight_categorical:app --reload --port 8002

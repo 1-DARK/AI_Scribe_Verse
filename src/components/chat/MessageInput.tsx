@@ -123,10 +123,13 @@ export const MessageInput = () => {
 
       if (userError) throw userError;
 
+      const numericalEndpoint = import.meta.env.VITE_NUMERICAL_API_URL || 'http://localhost:8001';
+      const categoricalEndpoint = import.meta.env.VITE_CATEGORICAL_API_URL || 'http://localhost:8002';
+      
       const endpoint =
         selectedModel === 'Numerical'
-          ? 'http://localhost:8001/analyzes'
-          : 'http://localhost:8002/analyze';
+          ? `${numericalEndpoint}/analyzes`
+          : `${categoricalEndpoint}/analyze`;
 
       let res;
       if (uploadedFile) {
