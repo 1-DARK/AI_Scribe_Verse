@@ -211,6 +211,10 @@ async def analyze_file(file: UploadFile = File(...)):
 
     return response
 
+@app.get("/health")
+async def health_check():
+    return {"status": "healthy", "service": "numerical-api"}
+
 @app.get("/", response_class=HTMLResponse)
 async def root():
     return """
