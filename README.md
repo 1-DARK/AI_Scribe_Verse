@@ -1,54 +1,69 @@
-#  AI Scribe Verse (AutoInsight)
+# 📊 AI Scribe Verse (AutoInsight)
 
+**AI Scribe Verse** is a powerful, full-stack data analysis platform that automatically analyzes CSV and Excel files using AI-powered insights. Upload your dataset and receive comprehensive statistical analysis, beautiful visualizations, and AI-generated summaries—all through an intuitive web interface.
 
-AI Scribe Verse (AutoInsight) is an intuitive, full-stack application designed to empower users with AI-driven conversations. The platform features dual AI models with different sentiment analysis approaches, providing users with flexible, context-aware interactions.
+## ✨ What Makes It Special?
 
-###  What Makes It Special?
-
-- **Dual AI Models**: Choose between "Non-Num" (standard sentiment analysis) and "Num" (custom phrase-enhanced sentiment analysis)
-- **Real-time Chat**: Instant message synchronization with persistent chat history
-- **Sentiment Analysis**: Understand the emotional tone of conversations with ML-powered insights
-- **Modern UI/UX**: Built with shadcn/ui components for a polished, professional experience
-- **Secure Authentication**: User authentication and session management via Supabase
+- **🔄 Dual Analysis Engines**: Separate specialized backends for numerical and categorical data
+- **📈 Automatic Insights**: AI-generated summaries and statistical analysis
+- **📊 Rich Visualizations**: Correlation matrices, histograms, boxplots, bar charts, and more
+- **🎨 Modern UI**: Beautiful, responsive interface built with React and shadcn/ui
+- **🔐 Secure & Private**: User authentication and data isolation via Supabase
+- **☁️ Cloud-Ready**: Deployment-ready configuration for Railway and other platforms
 
 ---
 
-##  Key Features
+## 🚀 Key Features
 
-###  AI-Powered Conversations
-- **Dual Model Support**: Switch between two distinct AI sentiment analysis models
-  - **Non-Num Model**: Standard TextBlob-based sentiment analysis
-  - **Num Model**: Enhanced with custom phrase recognition for nuanced understanding
-- **Real-time Response**: Fast, responsive AI interactions
-- **Sentiment Scoring**: Get detailed sentiment scores (Positive, Negative, Neutral)
+### 📊 Data Analysis
+- **Numerical Analysis**
+  - Summary statistics (mean, median, std deviation, quartiles)
+  - Correlation matrix with heatmap visualization
+  - Outlier detection using IQR method
+  - Distribution plots (histograms with KDE)
+  - Box plots for each numerical column
+  - Missing value analysis
+  
+- **Categorical Analysis**
+  - Value count distributions
+  - Frequency analysis for each category
+  - Rare category detection
+  - Bar chart visualizations
+  - Missing value tracking
 
-###  Chat Management
-- **Persistent Chat History**: All conversations saved to Supabase
-- **Multiple Conversations**: Create and manage multiple chat sessions
-- **Organized Sidebar**: Easy navigation between different chats
-- **Message Timestamps**: Track conversation flow over time
+### 🤖 AI-Powered Summaries
+- Automatic interpretation of statistical results
+- Natural language insights about your data
+- Key findings and patterns highlighted
+- Data quality assessment
 
-###  User Experience
-- **Beautiful Landing Page**: Engaging introduction to platform features
-- **Dark Mode Theme**: Modern, eye-friendly interface
-- **Responsive Design**: Works seamlessly on desktop and mobile
+### 💾 Data Management
+- **File Upload**: Support for CSV and Excel (.xlsx) files
+- **Dataset Preview**: View first rows of your data
+- **Column Detection**: Automatic identification of data types
+- **Error Handling**: Clear feedback for invalid files or formats
+
+### 🎨 User Experience
+- **Beautiful Landing Page**: Clear introduction to platform capabilities
+- **Dark Theme**: Modern, professional interface design
+- **Responsive Layout**: Works seamlessly on desktop and mobile
 - **Toast Notifications**: Real-time feedback for user actions
-- **Loading States**: Smooth transitions and loading indicators
+- **Loading States**: Smooth transitions during analysis
 
-###  Authentication & Security
+### 🔐 Authentication & Security
 - **Supabase Auth**: Secure user authentication system
-- **Protected Routes**: Authenticated access to chat features
+- **Protected Routes**: Authenticated access to analysis features
 - **Session Management**: Persistent login sessions
-- **User-specific Data**: Each user's chats are private and isolated
+- **User Isolation**: Each user's data and analysis history is private
 
 ---
 
-##  Tech Stack
+## 🛠️ Tech Stack
 
 ### Frontend
 - **React 18.3** - Modern UI library with hooks
 - **TypeScript 5.8** - Type-safe development
-- **Vite 7.1** - Lightning-fast build tool
+- **Vite 7.1** - Lightning-fast build tool and dev server
 - **React Router v6** - Client-side routing
 - **TanStack Query** - Powerful data fetching and caching
 - **Zustand** - Lightweight state management
@@ -57,38 +72,43 @@ AI Scribe Verse (AutoInsight) is an intuitive, full-stack application designed t
 - **Tailwind CSS 3.4** - Utility-first CSS framework
 - **shadcn/ui** - Beautiful, accessible component library
 - **Radix UI** - Unstyled, accessible UI primitives
-- **Lucide React** - Elegant icon set
+- **Lucide React** - Modern icon set
 - **next-themes** - Dark mode support
+- **Sonner** - Toast notifications
 
 ### Backend & Database
 - **Supabase** - Backend-as-a-Service
   - PostgreSQL database
   - Real-time subscriptions
   - User authentication
-  - Row-level security
+  - Row-level security (RLS)
+  - Database migrations
 
-### AI/ML Backend
-- **FastAPI** - Modern Python web framework
-- **TextBlob** - Natural language processing
-- **Python 3.x** - ML model implementation
-- **CORS Middleware** - Cross-origin request handling
+### Data Analysis Backend
+- **FastAPI** - Modern, fast Python web framework
+- **Pandas** - Data manipulation and analysis
+- **NumPy** - Numerical computing
+- **Matplotlib & Seaborn** - Data visualization
+- **scikit-learn** - Machine learning utilities
+- **PyTorch & Transformers** - AI model support
+- **Python 3.9+** - Backend runtime
 
 ### Development Tools
 - **ESLint** - Code linting
 - **PostCSS & Autoprefixer** - CSS processing
 - **React Hook Form** - Form management
 - **Zod** - Schema validation
-- **date-fns** - Date manipulation
+- **date-fns** - Date utilities
 
 ---
 
-##  Installation
+## 📥 Installation
 
 ### Prerequisites
 - **Node.js** (v18 or higher)
 - **npm** or **bun** package manager
-- **Python 3.x** (for ML backend)
-- **Supabase Account** (for backend services)
+- **Python 3.9+** (for analysis backend services)
+- **Supabase Account** (for authentication and database)
 
 ### 1. Clone the Repository
 ```bash
@@ -106,88 +126,149 @@ bun install
 ```
 
 ### 3. Install Python Dependencies
+
+**For Numerical Analysis Service:**
 ```bash
-pip install fastapi uvicorn textblob python-multipart
+cd services/numerical
+pip install -r ../../requirements_numerical.txt
+```
+
+**For Categorical Analysis Service:**
+```bash
+cd services/categorical
+pip install -r ../../requirements_categorical.txt
 ```
 
 ### 4. Environment Setup
-Create a `.env` file in the root directory:
+
+Copy the example environment file and configure it:
+```bash
+cp .env.example .env
+```
+
+Edit `.env` with your credentials:
 ```env
-VITE_SUPABASE_PROJECT_ID=your_project_id
-VITE_SUPABASE_PUBLISHABLE_KEY=your_publishable_key
+# Frontend Environment Variables
 VITE_SUPABASE_URL=https://your-project.supabase.co
+VITE_SUPABASE_PUBLISHABLE_KEY=your_supabase_anon_key
+VITE_NUMERICAL_API_URL=http://localhost:8001
+VITE_CATEGORICAL_API_URL=http://localhost:8002
+
+# Backend Environment Variables (for deployment)
+PYTHON_VERSION=3.11
+ALLOWED_ORIGINS=http://localhost:5173
 ```
 
 ### 5. Supabase Setup
-1. Create a new Supabase project
-2. Run the migrations in `supabase/migrations/`
-3. Set up your database tables for chats and messages
-4. Copy your project credentials to `.env`
+
+1. **Create a new Supabase project** at [supabase.com](https://supabase.com)
+2. **Run the database migrations**:
+   - Navigate to your Supabase project dashboard
+   - Go to SQL Editor
+   - Execute the SQL files in `supabase/migrations/` in order
+3. **Copy your project credentials**:
+   - Project URL → `VITE_SUPABASE_URL`
+   - Anon/Public key → `VITE_SUPABASE_PUBLISHABLE_KEY`
+4. **Enable Authentication**:
+   - Configure email authentication in Supabase Auth settings
 
 ---
 
-##  Running the Application
+## 🏃 Running the Application
 
-### Start the Frontend (Development)
+### Development Mode
+
+You need to run three services concurrently:
+
+**1. Start the Frontend**
 ```bash
-# Using npm
 npm run dev
-
-# Using bun
+# or
 bun run dev
 ```
-The app will be available at `http://localhost:5173`
+🌐 Frontend available at: `http://localhost:5173`
 
-### Start the ML Backend
+**2. Start the Numerical Analysis API**
 ```bash
-uvicorn ml_model:app --reload --port 8000
+cd services/numerical
+uvicorn AutoInsight_numerical:app --reload --port 8001
 ```
-The API will be available at `http://localhost:8000`
+🔢 Numerical API available at: `http://localhost:8001`
 
-### Build for Production
+**3. Start the Categorical Analysis API**
+```bash
+cd services/categorical
+uvicorn AutoInsight_categorical:app --reload --port 8002
+```
+📊 Categorical API available at: `http://localhost:8002`
+
+### Production Build
+
+**Build the Frontend:**
 ```bash
 npm run build
 # or
 bun run build
 ```
 
-### Preview Production Build
+**Preview Production Build:**
 ```bash
 npm run preview
-# or
-bun run preview
+```
+
+**Run Python Services in Production:**
+```bash
+# Numerical service
+uvicorn services.numerical.AutoInsight_numerical:app --host 0.0.0.0 --port 8001
+
+# Categorical service
+uvicorn services.categorical.AutoInsight_categorical:app --host 0.0.0.0 --port 8002
 ```
 
 
-##  Project Structure
+## 📁 Project Structure
 
 ```
 AI_Scribe_Verse/
-|- src/
-|  |- components/          # Reusable UI components
-|  |  |- ui/               # shadcn/ui components
-|  |  |- chat/             # Chat-specific components
-|  |- pages/               # Route pages
-|  |  |- Landing.tsx       # Landing page
-|  |  |- Auth.tsx          # Authentication page
-|  |  |- Chat.tsx          # Main chat interface
-|  |  |- NotFound.tsx      # 404 page
-|  |- hooks/               # Custom React hooks
-|  |- store/               # Zustand state management
-|  |- integrations/        # Third-party integrations (Supabase)
-|  |- lib/                 # Utility functions
-|  |- App.tsx              # Main app component
-|  |- main.tsx             # Application entry point
-|- supabase/
-|  |- migrations/          # Database migrations
-|  |- config.toml          # Supabase configuration
-|- public/                 # Static assets
-|- ml_model.py             # FastAPI ML backend
-|- package.json            # Dependencies and scripts
-|- tsconfig.json           # TypeScript configuration
-|- tailwind.config.ts      # Tailwind CSS configuration
-|- vite.config.ts          # Vite configuration
-|- README.md               # This file
+├── src/
+│   ├── components/
+│   │   ├── ui/                    # shadcn/ui component library
+│   │   └── [feature-components]   # Feature-specific components
+│   ├── pages/
+│   │   ├── Landing.tsx            # Landing/home page
+│   │   ├── Auth.tsx               # Authentication page
+│   │   ├── Chat.tsx               # Main analysis interface
+│   │   └── NotFound.tsx           # 404 error page
+│   ├── hooks/                     # Custom React hooks
+│   ├── store/                     # Zustand state management
+│   ├── integrations/
+│   │   └── supabase/              # Supabase client and types
+│   ├── lib/                       # Utility functions
+│   ├── App.tsx                    # Root application component
+│   └── main.tsx                   # Application entry point
+│
+├── services/
+│   ├── numerical/
+│   │   └── AutoInsight_numerical.py    # Numerical data analysis API
+│   └── categorical/
+│       └── AutoInsight_categorical.py  # Categorical data analysis API
+│
+├── supabase/
+│   ├── migrations/                # Database migration SQL files
+│   └── config.toml                # Supabase project configuration
+│
+├── public/                        # Static assets (images, etc.)
+├── Dataset/                       # Sample datasets for testing
+│
+├── requirements_numerical.txt     # Python deps for numerical service
+├── requirements_categorical.txt   # Python deps for categorical service
+├── package.json                   # Node.js dependencies
+├── tsconfig.json                  # TypeScript configuration
+├── tailwind.config.ts             # Tailwind CSS configuration
+├── vite.config.ts                 # Vite build configuration
+├── railway.json                   # Railway deployment config
+├── Procfile                       # Process file for deployment
+└── README.md                      # This file
 ```
 
 ---
@@ -195,68 +276,200 @@ AI_Scribe_Verse/
 
 
 
-##  Usage
+## 📖 Usage
 
-1. **Sign Up / Sign In**: Create an account or log in via the Auth page
-2. **Create a Chat**: Start a new conversation from the chat interface
-3. **Select AI Model**: Choose between Non-Num or Num model
-4. **Send Messages**: Type your message and get AI-powered sentiment analysis
-5. **View History**: Access all your previous conversations from the sidebar
-6. **Switch Chats**: Navigate between multiple conversations easily
+### Getting Started
+
+1. **Sign Up / Sign In**
+   - Navigate to the Auth page
+   - Create a new account or sign in with existing credentials
+   - You'll be redirected to the analysis interface
+
+2. **Upload Your Dataset**
+   - Click the upload button or drag and drop your file
+   - Supported formats: CSV, XLSX
+   - Maximum file size and row limits may apply
+
+3. **Choose Analysis Type**
+   - **Numerical Analysis**: For datasets with numeric data (prices, measurements, counts, etc.)
+   - **Categorical Analysis**: For datasets with text/category data (names, categories, labels, etc.)
+   - The system will auto-detect column types
+
+4. **Review Results**
+   - **Dataset Preview**: See the first rows of your data
+   - **Statistical Analysis**: Review summary statistics and metrics
+   - **Visualizations**: Explore interactive charts and plots
+   - **AI Summary**: Read natural language insights about your data
+
+5. **Download or Save**
+   - Export visualizations as images
+   - Save analysis results for later reference
+   - Share insights with your team
+
+### Example Datasets
+
+Sample datasets are included in the `Dataset/` folder for testing:
+- Numerical data examples (sales, measurements, etc.)
+- Categorical data examples (customer segments, product categories, etc.)
 
 ---
 
-##  Available Scripts
+## 📜 Available Scripts
 
 | Command | Description |
 |---------|-------------|
-| `npm run dev` | Start development server |
-| `npm run build` | Build for production |
+| `npm run dev` | Start Vite development server (port 5173) |
+| `npm run build` | Build optimized production bundle |
 | `npm run build:dev` | Build in development mode |
-| `npm run preview` | Preview production build |
-| `npm run lint` | Run ESLint |
+| `npm run preview` | Preview production build locally |
+| `npm run lint` | Run ESLint code linting |
 
 ---
 
-##  Configuration
+## ⚙️ Configuration
 
-### Tailwind CSS
-Customize theme in `tailwind.config.ts`
+### Frontend Configuration
 
-### TypeScript
-Compiler options in `tsconfig.json`, `tsconfig.app.json`, and `tsconfig.node.json`
+**Tailwind CSS** (`tailwind.config.ts`)
+- Theme customization (colors, fonts, spacing)
+- Plugin configuration
+- Content paths for purging
 
-### Vite
-Build and dev server settings in `vite.config.ts`
+**TypeScript** (`tsconfig.*.json`)
+- `tsconfig.json` - Base TypeScript configuration
+- `tsconfig.app.json` - Application-specific settings
+- `tsconfig.node.json` - Node.js environment settings
 
-### ESLint
-Linting rules in `eslint.config.js`
+**Vite** (`vite.config.ts`)
+- Build optimization settings
+- Dev server configuration
+- Plugin setup (React SWC)
+- Path aliases
+
+**ESLint** (`eslint.config.js`)
+- Code linting rules
+- React-specific rules
+- TypeScript linting
+
+### Backend Configuration
+
+**CORS Settings**
+- Both Python services support the `ALLOWED_ORIGINS` environment variable
+- Default: `*` (all origins) for development
+- Production: Set to your frontend domain
+
+**Port Configuration**
+- Numerical API: Port 8001 (default)
+- Categorical API: Port 8002 (default)
+- Frontend: Port 5173 (Vite default)
 
 ---
 
-##  Environment Variables
+## 🔐 Environment Variables
 
-| Variable | Description | Required |
-|----------|-------------|----------|
-| `VITE_SUPABASE_PROJECT_ID` | Supabase project ID | Yes |
-| `VITE_SUPABASE_PUBLISHABLE_KEY` | Supabase publishable API key | Yes |
-| `VITE_SUPABASE_URL` | Supabase project URL | Yes |
+### Frontend Variables
+
+| Variable | Description | Required | Example |
+|----------|-------------|----------|----------|
+| `VITE_SUPABASE_URL` | Supabase project URL | Yes | `https://xxx.supabase.co` |
+| `VITE_SUPABASE_PUBLISHABLE_KEY` | Supabase anon/public key | Yes | `eyJhbGc...` |
+| `VITE_NUMERICAL_API_URL` | Numerical analysis API endpoint | Yes | `http://localhost:8001` |
+| `VITE_CATEGORICAL_API_URL` | Categorical analysis API endpoint | Yes | `http://localhost:8002` |
+
+### Backend Variables
+
+| Variable | Description | Required | Default |
+|----------|-------------|----------|----------|
+| `PYTHON_VERSION` | Python runtime version | No | `3.11` |
+| `ALLOWED_ORIGINS` | CORS allowed origins | No | `*` |
+
+### Getting Supabase Credentials
+
+1. Go to [supabase.com](https://supabase.com) and sign in
+2. Select your project
+3. Go to **Settings** → **API**
+4. Copy the **Project URL** and **anon/public key**
 
 ---
 
-##  Contributing
+## 🚀 Deployment
+
+### Railway Deployment
+
+This project includes configuration files for easy deployment to Railway:
+
+1. **Create a Railway Account** at [railway.app](https://railway.app)
+
+2. **Deploy Frontend**
+   - Create a new project from GitHub repo
+   - Railway will auto-detect Vite configuration
+   - Add environment variables in Railway dashboard
+   - Deploy will happen automatically
+
+3. **Deploy Python Services**
+   - Create two separate services in Railway
+   - Service 1: Set root directory to `services/numerical/`
+   - Service 2: Set root directory to `services/categorical/`
+   - Add environment variables for each service
+   - Railway will use `requirements_*.txt` files
+
+4. **Update Frontend Environment**
+   - Update `VITE_NUMERICAL_API_URL` with Railway numerical service URL
+   - Update `VITE_CATEGORICAL_API_URL` with Railway categorical service URL
+   - Redeploy frontend
+
+### Other Platforms
+
+**Vercel/Netlify** (Frontend)
+- Build command: `npm run build`
+- Output directory: `dist`
+- Environment variables: Add all `VITE_*` variables
+
+**Heroku/Render** (Python Services)
+- Create two separate services
+- Use `requirements_*.txt` files
+- Set Python version to 3.11+
+- Configure start commands:
+  - Numerical: `uvicorn services.numerical.AutoInsight_numerical:app --host 0.0.0.0 --port $PORT`
+  - Categorical: `uvicorn services.categorical.AutoInsight_categorical:app --host 0.0.0.0 --port $PORT`
+
+---
+
+## 🤝 Contributing
 
 Contributions are welcome! Please follow these steps:
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+1. **Fork** the repository
+2. **Create** a feature branch
+   ```bash
+   git checkout -b feature/AmazingFeature
+   ```
+3. **Commit** your changes
+   ```bash
+   git commit -m 'Add some AmazingFeature'
+   ```
+4. **Push** to the branch
+   ```bash
+   git push origin feature/AmazingFeature
+   ```
+5. **Open** a Pull Request
+
+### Development Guidelines
+- Follow existing code style and conventions
+- Write meaningful commit messages
+- Add comments for complex logic
+- Test your changes thoroughly
+- Update documentation as needed
 
 ---
 
-##  License
+## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+**Copyright (c) 2025 Harsh Vardhan Chauhan**
+
+---
+
+
 
