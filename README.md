@@ -1,21 +1,34 @@
-# 📊 AI Scribe Verse (AutoInsight)
+#  AI Scribe Verse (AutoInsight)
 
-**AI Scribe Verse** is a powerful, full-stack data analysis platform that automatically analyzes CSV and Excel files using AI-powered insights. Upload your dataset and receive comprehensive statistical analysis, beautiful visualizations, and AI-generated summaries—all through an intuitive web interface.
+**AI Scribe Verse** is a powerful, full-stack data analysis platform that automatically analyzes CSV and Excel files using AI-powered insights. Upload your dataset and receive comprehensive statistical analysis, beautiful visualizations, and AI-generated summaries all through an intuitive web interface.
 
-## ✨ What Makes It Special?
+## What Makes It Special?
 
-- **🔄 Dual Analysis Engines**: Separate specialized backends for numerical and categorical data
-- **📈 Automatic Insights**: AI-generated summaries and statistical analysis
-- **📊 Rich Visualizations**: Correlation matrices, histograms, boxplots, bar charts, and more
-- **🎨 Modern UI**: Beautiful, responsive interface built with React and shadcn/ui
-- **🔐 Secure & Private**: User authentication and data isolation via Supabase
-- **☁️ Cloud-Ready**: Deployment-ready configuration for Railway and other platforms
+- **Dual Analysis Engines**  
+  Dedicated backend pipelines for numerical and categorical data processing.
 
----
+- **Automatic Insights**  
+  AI-powered summaries, statistical analysis, and intelligent pattern detection.
 
-## 🚀 Key Features
+- **Rich Visualizations**  
+  Generate correlation heatmaps, histograms, boxplots, bar charts, and more.
 
-### 📊 Data Analysis
+- **Modern UI**  
+  Clean and responsive interface built with React, Tailwind CSS, and shadcn/ui.
+
+- **Secure & Private**  
+  Supabase-powered authentication with complete user data isolation.
+
+- **Cloud-Ready**  
+  Pre-configured for seamless deployment on Railway, Render, and other cloud platforms.
+
+- **Future NLP Support**  
+  Upcoming natural language processing features for deeper dataset understanding.
+
+
+##  Key Features
+
+###  Data Analysis
 - **Numerical Analysis**
   - Summary statistics (mean, median, std deviation, quartiles)
   - Correlation matrix with heatmap visualization
@@ -31,26 +44,26 @@
   - Bar chart visualizations
   - Missing value tracking
 
-### 🤖 AI-Powered Summaries
+###  AI-Powered Summaries
 - Automatic interpretation of statistical results
 - Natural language insights about your data
 - Key findings and patterns highlighted
 - Data quality assessment
 
-### 💾 Data Management
+### Data Management
 - **File Upload**: Support for CSV and Excel (.xlsx) files
 - **Dataset Preview**: View first rows of your data
 - **Column Detection**: Automatic identification of data types
 - **Error Handling**: Clear feedback for invalid files or formats
 
-### 🎨 User Experience
+### User Experience
 - **Beautiful Landing Page**: Clear introduction to platform capabilities
 - **Dark Theme**: Modern, professional interface design
 - **Responsive Layout**: Works seamlessly on desktop and mobile
 - **Toast Notifications**: Real-time feedback for user actions
 - **Loading States**: Smooth transitions during analysis
 
-### 🔐 Authentication & Security
+### Authentication & Security
 - **Supabase Auth**: Secure user authentication system
 - **Protected Routes**: Authenticated access to analysis features
 - **Session Management**: Persistent login sessions
@@ -58,7 +71,7 @@
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 ### Frontend
 - **React 18.3** - Modern UI library with hooks
@@ -102,7 +115,7 @@
 
 ---
 
-## 📥 Installation
+## Installation
 
 ### Prerequisites
 - **Node.js** (v18 or higher)
@@ -174,7 +187,7 @@ ALLOWED_ORIGINS=http://localhost:5173
 
 ---
 
-## 🏃 Running the Application
+## Running the Application
 
 ### Development Mode
 
@@ -186,21 +199,21 @@ npm run dev
 # or
 bun run dev
 ```
-🌐 Frontend available at: `http://localhost:5173`
+Frontend available at: `http://localhost:5173`
 
 **2. Start the Numerical Analysis API**
 ```bash
 cd services/numerical
 uvicorn AutoInsight_numerical:app --reload --port 8001
 ```
-🔢 Numerical API available at: `http://localhost:8001`
+Numerical API available at: `http://localhost:8001`
 
 **3. Start the Categorical Analysis API**
 ```bash
 cd services/categorical
 uvicorn AutoInsight_categorical:app --reload --port 8002
 ```
-📊 Categorical API available at: `http://localhost:8002`
+Categorical API available at: `http://localhost:8002`
 
 ### Production Build
 
@@ -226,7 +239,7 @@ uvicorn services.categorical.AutoInsight_categorical:app --host 0.0.0.0 --port 8
 ```
 
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 AI_Scribe_Verse/
@@ -276,7 +289,7 @@ AI_Scribe_Verse/
 
 
 
-## 📖 Usage
+## Usage
 
 ### Getting Started
 
@@ -314,7 +327,7 @@ Sample datasets are included in the `Dataset/` folder for testing:
 
 ---
 
-## 📜 Available Scripts
+## Available Scripts
 
 | Command | Description |
 |---------|-------------|
@@ -326,7 +339,7 @@ Sample datasets are included in the `Dataset/` folder for testing:
 
 ---
 
-## ⚙️ Configuration
+## Configuration
 
 ### Frontend Configuration
 
@@ -365,7 +378,7 @@ Sample datasets are included in the `Dataset/` folder for testing:
 
 ---
 
-## 🔐 Environment Variables
+## Environment Variables
 
 ### Frontend Variables
 
@@ -392,7 +405,7 @@ Sample datasets are included in the `Dataset/` folder for testing:
 
 ---
 
-## 🚀 Deployment
+## Deployment
 
 ### Railway Deployment
 
@@ -435,7 +448,7 @@ This project includes configuration files for easy deployment to Railway:
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! Please follow these steps:
 
@@ -463,7 +476,7 @@ Contributions are welcome! Please follow these steps:
 
 ---
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
